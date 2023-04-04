@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 数组解构
+        /* 
+            将数组的单元值（元素）快速批量赋值给一系列的变量(简介的语法)
+            批量的赋值操作
+            支持多维数组
+        */
+       const arr = [100, 60, 80]
+        // forEach() 方法
+        /* 
+            调用数组的每个元素，并将元素传递给回调函数
+            遍历数组中的每个元素
+            只遍历，不返回数组
+            item 必写、index 可选
+        */
+        arr.forEach(function(item, index) {
+            console.log(item)
+            console.log(index)
+        })
+       const [max, min, avg] = arr
+       console.log(max)
+        // 交换
+        let a = 1
+        let b = 2;
+        [b, a] = [a, b]
+        console.log(a,b)    
+        /* 
+            js前面必须加分号的情况
+            在这个语句前有其他语句时，必须加;
+            1、立即执行函数
+                ;(function t() {})()
+            2、数组解构
+                ;[b, a] = [a, b]
+        */
+        // 数组前有其他代码，[]开头要加分号   
+        // 变量多、单元值少
+        const [f, g, c, d, e] = [1, 4, 6, 8]
+        // 默认值  ——  变量多、单元值少
+        const [n = 0, m = 0] = [1]
+        console.log(m)   
+        // 变量少、单元值多
+        const [i, j] = [1, 4, 6]
+        // 剩余参数  ——  变量少、单元值多
+        const [h, ...k] = [1, 4, 6]
+        console.log(k)
+        // 按需导入
+        const [r, , z] = [1, 4, 6]
+        console.log(z)
+
+        // 对象解构
+        /* 
+            将对象属性和方法快速批量赋值给一系列的变量(简介的语法)
+        */
+        // 变量名、属性名要相同   
+       const {uname, age} = {uname: 'ping', age: 18}
+       console.log(uname)
+       console.log(age)
+        // 对象解构的变量名可以重新改名
+       const {uname: username, age: userage} = {uname: 'ping', age: 18}
+       console.log(username)
+       console.log(userage)
+    </script>
+</body>
+</html>

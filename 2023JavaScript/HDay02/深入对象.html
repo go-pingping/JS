@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 创建对象
+        // 1、字面量创建
+        const o = {
+            name: 'ping'
+        }
+        console.log(o)
+        // 2、new Object()创建
+        const obj = new Object({
+            name: 'jin'
+        })
+        console.log(obj)
+        // 3、构造函数创建
+
+        // 构造函数
+        /* 
+            特殊函数、主要用来初始化对象
+            通过构造函数，可以快速创建多个类似的对象
+            约定：
+                1、他们的命名以大写字母开头
+                2、他们只能由 new 操作符来执行
+            说明：
+                1、使用 new关键字调用函数的行为被称为实例化
+                2、实例化构造函数时没有参数可以省略()
+                3、构造函数内部无需写 return，返回值即为新创建的对象
+                4、构造函数内部的 return返回的值无效
+                5、new Object() new Date()也是实例化构造函数
+            实例化过程说明：
+                1、创建新对象
+                2、构造函数 this指向新对象
+                3、执行构造函数代码、修改 this、添加新的属性
+                4、返回新对象
+        */
+        function Pig(uname, age) {
+            this.uname = uname
+            this.age = age
+        }
+        const p = new Pig('ping', 6)
+        console.log(p)
+        const x = new Pig('xia', 18)
+        console.log(x)
+        // 实例成员
+        /* 
+            实例对象中的属性和方法被称为实例成员
+            说明：
+                为构造函数传入参数、创建结构相同但值不同的对象
+                构造函数创建的实例对象彼此独立，互不影响
+        */    
+        function Person() {
+            this.name = 'ping'
+            this.sayHi = function() {
+                console.log('Hello~')
+            }
+        }
+        // p1是实例化对象
+        // p1实际就是 构造函数内部的 this
+        const p1 = new Person()
+
+        // 静态成员
+        /* 
+            构造函数的属性和方法被称为 静态成员
+            说明
+                静态成员只能构造函数来访问
+                静态方法中的 this指向构造函数
+        */   
+        Person.eyes = 2
+        // 静态属性
+    </script>
+</body>
+</html>

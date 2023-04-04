@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 弱数据类型的语言 —— 之后赋值后才知道数据类型
+        // 1、基本数据类型
+        // number、string、boolean、null、undefined
+        // ：number-数字型
+            // 算术运算符：+ - * / % 可以使用()提升优先级
+            let num1 = 123
+            console.log(num1);
+            // （粘性）NaN： not a number （不要跟 NaN操作 —— 任何对 NaN的操作都是 NaN）
+        // :string-字符串型
+            // 单引号、双引号、反引号
+            // 转义字符 \
+            // 拼接字符串 + （只要有一个字符串，使用 +号就是拼接）
+            let str = `字符串`
+            console.log(str);
+            // 模板字符串 反引号 `` 和 ${}
+            let age = 18
+            document.write(`我今年${age}岁了` + "<p>")
+        // ：boolean-布尔型
+            // true 和 false
+            document.write(3 > 4)
+        // ：null-空类型
+            let nu = null
+            document.write("<p>" + nu)
+        // ：undefined-未定义类型
+            // 声明一个变量未赋值就是未定义
+            let und
+            document.write("<p>" + und + "<p>")
+            document.write(undefined + 1) // NaN
+        // 检测数据类型 typeof
+            let num2 = 10
+            console.log(typeof num2); // 也可以加括号
+        // 2、引用数据类型
+        // object-对象、function-函数、array-数组
+            // null 也是一个对象
+
+        // 数据转换（隐式、显式）
+            // 隐式：系统内部自动转换
+            console.log('ping' + 1);
+            // 除 + 号外，其他的转化为数字型
+            console.log(2 - '2');
+            // + 转化为数字型
+            console.log(+ '123');
+            // 显式：强转
+            let str1 = '123'
+            console.log(Number(str1));
+            // parseInt 整数
+            // parseFloat 小数
+    </script>
+</body>
+</html>

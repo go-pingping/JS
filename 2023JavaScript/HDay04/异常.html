@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p style="font-size: 30px;">123</p>
+    <script>
+        // throw 抛异常
+        /* 
+            抛出异常，程序终止
+            throw 后跟错误提示信息
+            Error 对象配合使用，能设置更详细的错误信息
+        */
+/*         function fn(x, y) {
+            if(!x || !y) {
+                // throw '没有参数传递'
+                throw new Error('没有参数传递')
+            }
+            return x + y
+        }
+        fn() */
+    </script>
+    <script>
+        // try/catch => 捕获错误信息
+        /* 
+            拦截错误，提示浏览器提供的错误信息，但不中断程序的执行
+            需要 return 中断程序
+        */
+        function fn() {
+            try {
+                // 可能会发送错误的代码，写到 try
+                const p = document.querySelector('.p')
+                p.style.color = 'red'
+            } catch(err) {
+                // err 为形参，可任意  ---  message固定
+                // 只拦截错误信息，提示浏览器提供的错误信息，但不中断程序的执行
+                console.log(err.message)  // 不中断
+                // throw 中断
+                throw new Error('你看，代码写错了吧，还不快改！')
+                // return
+            } 
+            finally {
+                // 不管程序对不对，一定会执行（即使有 throw也会执行）
+                alert('我弹出来了！')
+            }
+            // 有 throw 不会执行
+            console.log(11)
+        }
+        fn()
+    </script>
+    <script>
+        // debugger 调试
+        debugger
+        // 写在代码中，在浏览器刷新，自动跳出sources中的debugger
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 正则表达式
+        /* 
+            匹配字符串中字符组合的模式
+            查找、替换符合正则表达式的文本
+            1、验证表单 （匹配）
+            2、过滤内容中比较敏感的词(替换)、(提取)
+
+            1、定义规则
+            2、判断、查找 是否匹配
+
+            test() 查看正则表达式与指定字符串是否匹配
+
+            exec() 在指定字符串中执行一个搜索匹配
+            返回数组 找不到返回 null
+        */
+        // 定义语法
+        // const 变量名 = /表达式/
+        const str = '我在学习前端，希望能高新毕业' 
+        const reg = /前端/     // 不需要写引号
+        // 判断
+        console.log(reg.test(str))
+        console.log(reg.exec(str))
+
+        // 元字符（特殊字符）
+        // 匹配 26个英文字母 [a-z]
+        /* 
+            边界符 表示位置、开头、结尾（必须什么开头，或结尾）
+            量词 表示重复次数
+            字符类 比如 \d 表示 0 ~ 9
+        */
+        // 边界符
+        // ^ 匹配行首    $ 匹配行尾
+        console.log('-------------------')
+        console.log(/^哈/.test('哈哈'))
+        console.log(/^哈/.test('二哈'))
+        console.log('------------------------')
+        console.log(/^哈$/.test('二哈'))
+        console.log(/^哈$/.test('哈'))  // 精确匹配！！！ 只有这个情况为 true
+        console.log(/^哈$/.test('哈哈'))
+
+        // 量词 某个模式出现的次数
+        console.log('-----------------')
+        /* 
+            重复
+            *  零次或更多次
+            +  一次或更多次
+            ?  零次或一次
+            {n} n次  重复最近的
+            {n,} n或更多次   —— 大于等于 n次
+            {n,m} n到 m次   ——  大于等于 n 并且小于等于 m
+
+            // 逗号两边不能有空格
+        */
+       console.log(/^哈$/.test('哈'))
+       console.log(/^哈*$/.test('哈哈哈哈'))
+       console.log(/^哈*$/.test(''))
+       console.log(/^哈*$/.test('哈很哈'))
+       console.log(/^哈*$/.test('哈很了'))
+       console.log(/^哈*$/.test('乐乐很哈'))   // 只能有哈
+       console.log('-----------------')
+
+        // 字符类
+        /* 
+            [] 包含其中任意一个  // 加上精确匹配只能有一个
+            - [a-z] 范围
+            ^ 取反 []
+            . 匹配除换行符之外的任何单个字符
+        */
+       console.log(/^[a-zA-Z0-9]$/.test('p'))
+       console.log(/^[a-zA-Z0-9]$/.test('P'))
+       console.log(/^[a-zA-Z0-9]$/.test('5'))
+
+        // 预定义
+        /* 
+            \d 0-9任一数字
+            \D 0-9 以外的字符
+            \w 任意字母、数字、下划线
+            \W 除上面外的字符
+            \s 匹配空格（换行符、制表符、空格）
+            \S 非空格
+        */
+
+        // 修饰符
+        // /表达式/修饰符
+        /* 
+            i 不区分大小写
+            g 匹配所有满足正则表达式的结果
+        */
+
+        // replace 
+        // 字符串.replace(/正则表达式/, '替换的文本')
+        const newStr = str.replace(/前端/, 'Java')
+        console.log(newStr);
+    </script>
+</body>
+</html>

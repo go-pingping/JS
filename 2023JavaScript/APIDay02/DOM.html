@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>click</button>
+    <script>
+        // 环境对象 this :当前函数运行时所处的环境
+        // 普通函数里面 this指向的是 window
+        const btn = document.querySelector('button')
+        btn.addEventListener('click', function() {
+            console.log(this)
+            // 指向 button ， btn调用了函数
+            // this 指向函数调用者
+        })
+
+        // 回调函数 ：将函数 A做为参数传递给函数 B是，称 A为回调函数
+    </script>
+</body>
+</html>

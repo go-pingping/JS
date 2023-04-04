@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        Object
+        Array
+        String
+        Number 
+        */
+    //    Object
+        const str = 'ping'
+        // 底层完成下面操作，把简单数据类型包装为了引用数据类型
+        // const str = new String('ping')
+        // 字符串、数值、布尔等基本类型都有专门的构造函数，这些我们称为包装类型
+        const o = {uname: 'ping', age: 20}
+        // 获取属性名
+        console.log(Object.keys(o))
+        // 获取属性值
+        console.log(Object.values(o))
+
+        // 对象的拷贝
+        const oo = {}
+        console.log(Object.assign(oo, o))
+        // 追加属性
+        console.log(Object.assign(o, {gender: '男'}))
+    //    Array
+        /* 
+            forEach  遍历数组  不返回数组，查找遍历数组元素
+            filter  过滤数组  返回新数组，返回满足筛选条件的数组元素
+            map  迭代数组  返回新数组，返回的是处理之后的数组元素
+            reduce  累计器  返回累计处理的结果，常用于求和
+        */
+        const arr = [1,2,3,5,7,3,8]
+    //    arr.reduce(function(上一次的值，当前值){},初始值)
+    //    如果有初始值，会把初始值加到结果里面
+        const total = arr.reduce(function(prev, current) {
+            return prev + current
+        })
+        // const total = arr.reduce((prev. current) => prev + current)
+        console.log(total);
+        /* 
+            reduce执行过程
+            1、如果没有起始值，则上一次值以数组的第一个数组元素的值
+            2、每一次循环，把返回值给作为下一次循环的上一次值
+            3、如果有起始值，则起始值作为上一次值
+        */
+    </script>
+</body>
+</html>

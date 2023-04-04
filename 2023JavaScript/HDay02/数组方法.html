@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // find
+        const arr = ['red', 'blue', 'pink']
+        const res = arr.find(function (item) {
+            return item === 'blue'
+            // 没有这个值返回undefined
+        })
+        console.log(res)
+
+        // every
+        // 判断每一个是否都符合条件，如果都符合返回 true 否则返回 false
+        const arr1 = [1,1,1,1,2]
+        const flag = arr1.every(item => item >= 20)
+        console.log(flag)
+
+        // 伪数组转化为真数组
+        // Array.from(伪数组)
+    </script>
+</body>
+</html>

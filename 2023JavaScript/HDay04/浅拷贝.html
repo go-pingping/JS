@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        直接赋值
+            赋值地址 => 会修改原数据
+
+        浅拷贝
+            深浅拷贝只针对于引用类型
+            浅拷贝 => 拷贝的是地址
+            常见方法 => 
+                拷贝对象：Object.assgin() / 展开运算符 {...obj} 
+                拷贝数组：Array.prototype.concat() / [...arr]
+
+            浅拷贝，拷贝对象后，里面的属性值是简单数据类型直接拷贝值
+            如果属性值是引用数据类型，则拷贝的是地址
+        */
+        const obj = {
+            uname: 'ping',
+            uage: 20,
+            famliy: {
+                baby: 'baby'
+            }
+        }
+        // 浅拷贝 -- 单层没有问题 -- 多层会出现问题 拷贝地址
+        const o1 = {...obj}
+        // obj 的值没有被修改
+        o1.uage = 21
+        console.log(o1)
+        console.log(obj)
+        const o2 = {}
+        Object.assign(o2, obj)
+        //  obj 的值没有被修改
+        o2.uage = 22
+        // 所有的 baby 值都被修改
+        o2.famliy.baby = 'big'
+        console.log(o2)
+        console.log(obj)
+    </script>
+</body>
+</html>

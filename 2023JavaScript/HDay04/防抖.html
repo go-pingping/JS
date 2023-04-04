@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: blueviolet;
+            font-size: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">1</div>
+    <script src="./lodash.min.js"></script>
+    <script>
+        /* 
+        debounce
+        防抖：单位时间内，频繁触发事件，只执行最后一次
+            底层为定时器
+        */
+        // 鼠标在盒子上移动，里面数字 + 1   
+        const box = document.querySelector('.box')
+        let i = 1
+        function mouseMove() {
+            box.innerHTML = i++
+        }
+        // box.addEventListener('mousemove', mouseMove)   未防抖
+        
+        // 利用 lodash库
+        // 鼠标停五秒后才 + 1
+        // box.addEventListener('mousemove', _.debounce(mouseMove, 500))
+
+        // 防抖函数  —— 利用 setTimeout定时器来实现
+        function debounce(fn, t) {
+            // 声明一个定时器变量
+            let timer
+            // return 一个匿名函数
+            return function() {  // 实现每次鼠标移动都调用
+                if(timer) {
+                    clearTimeout(timer)   // => 先判断有没有定时器，有则清除
+                }
+                timer = setTimeout(function() {
+                    fn()   // => 设置的一个函数，在这里用小括号调用
+                }, t)
+            }
+        }
+        box.addEventListener('mousemove', debounce(mouseMove, 500))
+    </script>
+</body>
+</html>

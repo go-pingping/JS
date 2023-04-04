@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li:nth-child(2) {
+            background-color: aquamarine;
+            width: 300px;
+            height: 100px;
+        }
+        .lili {
+            width: 300px;
+            height: 150px;
+            background-color: blueviolet;
+        }
+        .pp {
+            text-align: center;
+            color: red;
+        }
+        input {
+            width: 200px;
+            height: 40px;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <hr data-id="1">
+        <hr data-id="2">
+        <hr data-id="3">
+        <hr data-id="4">
+    </div>
+    <div>
+        <input type="text" value="账号">
+        <input type="checkbox" name="" id="" class="checkbox">
+        <input type="checkbox" name="" id="">
+        <input type="checkbox" name="" id="">
+        <button disabled >点击</button> 
+    </div>
+    <p>123</p>
+    <div class="box" id="boxx">
+        <ul>
+            <li>One</li>
+            <li>Two</li>
+        </ul>
+    </div>
+    
+    <script>
+        // DOM 文档对象模型
+        // 操作网页内容：开发网页特效和用户交互
+
+        // DOM树：文档树直观的体现了标签与标签之间的关系
+
+        /*  DOM对象：浏览器根据 html标签生成的 对象
+            把网页当做对象来处理
+            HTML中加标签 、 JS中叫对象
+            最大的对象为 document ：用来访问和操作网页内容的
+            所有的标签属性都可以在这个对象上找到
+            修改这个对象的属性会自动映射到标签上 
+        */
+
+        // 获取 DOM对象
+        // 1、根据 css选择器
+        // document.querySelector('css选择器') ： 返回值：选择匹配的第一个元素，是一个HTMLElement对象
+        // css怎么写就怎么写
+        // 括号里必须是字符串，必须加引号，不加引号是变量
+        const box = document.querySelector('div')
+        const box2 = document.querySelector('.box')
+        const box3 = document.querySelector('#boxx')
+        // 获取 body
+        document.body
+
+        console.log(box);
+        console.log(box2);
+        console.log(box3);
+        const li = document.querySelector('ul li:first-child')
+
+
+
+
+        // 1、通过style修改样式
+        // 对象.属性
+        li.style.color = 'red'
+        // 对象.style.样式属性
+        li.style.width = '300px'
+        li.style.height = '100px'
+        // 多组单词 小驼峰
+        li.style.backgroundColor = 'black'
+        li.style.borderTop = '2px solid red'
+        // 获取单个元素，可以直接修改
+        console.log(li);
+
+        // 2、通过操作类名
+        const p = document.querySelector('p')
+        p.className = 'lili'
+        // 单独写会覆盖
+        // 保留原有类名 ： 'nav lili'
+
+        // 3、classList 常用 ：追加或删除  H5新增
+        /* 
+            元素.classList.add('类名')  追加
+            元素.classList.remove('类名')  删除
+            元素.classList.toggle('类名')  切换 有删掉，没有加上
+        */
+        p.classList.add('pp')
+        p.classList.remove('lili')
+        p.classList.toggle('lili') // 开关灯
+
+        // 操作表单元素
+        const uname = document.querySelector('input')
+        console.log(uname.value)
+        // innerHTML 得不到表单的内容
+        uname.value = '我要切换成密码'
+        uname.type = 'password'
+        // 表单属性中添加就有效果，移除就没有效果，一律使用布尔值表示，true代表添加了该属性 false 代表移除了该属性
+        // 如 disabled 、checked 、 selected
+        const ipt = document.querySelector('.checkbox')
+        console.log(ipt.checked)
+        ipt.checked = true // 只接收布尔值
+        // ipt.checked = 'true' 会修改，不提倡 有隐式修改 除了空，其他的都为true
+        const btn = document.querySelector('button')
+        btn.disabled = false  // 不禁用     true 禁用
+
+        // 自定义属性
+        // data-自定义属性
+        const hr = document.querySelector('hr')
+        // 获取
+        console.log(hr.dataset) // set 集合 将 data- ；自定义属性找出来
+        console.log(hr.dataset.id)
+
+
+
+        // 选择多个
+        const lis = document.querySelectorAll('ul li')
+        // 获取多个元素，不能直接修改 ： 通过遍历修改！
+        // querySelectorAll：得到伪数组，有长度、索引号
+        for (let i = 0; i < lis.length; i++) {
+            console.log(lis[i])
+        }
+        console.log(lis);
+
+        // 根据 id获取
+        document.getElementById('boxx') // 不加 #
+        // 根据标签获取
+        document.getElementsByTagName('div')
+        // 根据 class获取
+        document.getElementsByClassName('box') // 不加 .
+
+        // 操作元素内容  属性  对象.innerText、对象.innerHTML
+        console.log(li.innerText); // 获取文字内容
+        li.innerText = 'Three'
+        // 显示纯文本、不解析标签
+        console.log(li.innerText); 
+
+        // innerHTML 解析标签
+        // box.innerHTML = '<P>我是Title</p>'
+
+
+
+
+        // 定时器- 间歇函数
+        // 倒计时
+        // 开、关
+        // setInterval(函数，间隔时间（毫秒）) ：每隔一段时间，调用一次函数
+        
+        /* 
+            setInterval(function () {
+                console.log('一秒一次');
+            }, 1000) 
+        */
+        /* 
+            function fn() {
+                console.log('一秒一次')
+            }
+            setInterval(fn, 1000) // 只写函数名，不加小括号  （加小括号要使用引号）
+        */
+        // 每个定时器都有一个编号 
+        
+        // 关闭定时器
+        /* 
+            let 变量名 = setInterval(函数， 间隔时间)
+            console.log(变量名) //输出一个 id数字
+            clearInterval(变量名)
+        */
+        function fn() {
+                console.log('一秒一次')
+            } 
+        let n = setInterval(fn, 1000)
+        console.log(n);
+        clearInterval(n)
+
+
+    </script>
+</body>
+</html>

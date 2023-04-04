@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 将字符串转换为数组 ，括号里面为分隔符
+        // join() 将数组转换为字符串
+        const str = 'pink,red'
+        const arr = str.split(',')
+        console.log(arr)
+
+        // substring 字符串截取 - 不包括 end
+        const str2 = str.substring(0,4)
+        console.log(str2)
+
+        // startsWith 检测字符串开头  - 区分大小写
+        console.log(str.startsWith('pin'))
+        console.log(str.startsWith('re',5)) // 从第几个开始
+        // endsWith 检测字符串结尾
+        console.log(str.endsWith('d'))
+
+        // includes 字符串是否包含在另一个字符串中  - 区分大小写
+        console.log(str.includes('red'))
+        console.log(str.includes('red',6))
+
+        // 数字 toFixed() 设置保留小数位的长度
+        const num = 34.122152
+        console.log(num.toFixed(3))
+    </script>
+</body>
+</html>

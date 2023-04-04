@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点击1</button>
+    <button class="two">点击2</button>
+    <script>
+        /* 
+        普通函数：谁调用，this指向谁
+            普通函数没有明确调用者时 this 值为 window
+            'use strict' => 严格模式
+            严格模式下没有调用者时 this 的值为 undefined
+
+        箭头函数：没有 this
+            在外层作用域中，一层一层查找 
+            最近作用域的 this
+
+        不适用：！基于原型的面向对象不推荐使用箭头函数、构造函数、dom事件等···
+        适用：需要使用上层 this时
+        */
+        // 普通函数
+        console.log(this) // window
+        function fn() {
+            console.log(this) // window
+        }
+        window.fn()
+        window.setTimeout(function() {
+            console.log(this) //window
+        }, 1000)
+        document.querySelector('button').addEventListener('click', function() {
+            console.log(this) // button
+        })
+        const obj = {
+            sayHi: function() {
+                console.log(this) // obj
+            }
+        }
+        obj.sayHi()
+    </script>
+
+    <script>
+        // 改变 this指向
+        // call(this的指向,参数 1,参数 2,····): 指定被调用函数 this的值
+        // apply(this的指向,[argsArray]): 指定被调用函数 this的值
+            // 传递的值必须包含在数组里面
+            // 使用Math.max()求数组的最大值
+        // bind(this的指向,参数 1,参数 2,····): 改变函数内部 this指向
+        const obj1 = {
+            uname: 'ping'
+        }
+        function fn1() {
+            console.log('改变this')
+            console.log(this) // obj1
+        }
+        function fn2(x, y) {
+            console.log(x + y)
+            console.log(this) // obj1
+        }
+        // 1、
+        fn1.call(obj1)
+        // 2、
+        fn2.apply(obj1,[1, 2]) // 必须用数组
+
+        // 数组求最大值
+        // 1、
+        const max = Math.max.apply(null, [3,4,5,6])
+        console.log(max)
+        // 2、
+        console.log(Math.max(...[5,66,79,4]))
+
+        // bind 最重要
+            // 不会调用函数
+            // 能改变 this指向
+            // 返回值是个函数，但是这个函数里面的 this 是更改过的 obj
+            // 使用 -- 定时器内部
+        const obj2 = {
+            uage: 20
+        }
+        function fn() {
+            console.log('bind')
+            console.log(this)
+        }
+        const fun = fn.bind(obj2)  // 将函数拷贝一份
+        console.log(fun)
+        fun()
+    </script>
+
+    <script>
+        // bind
+        const btn = document.querySelector('.two')
+        btn.addEventListener('click', function() {
+            // 禁用
+            this.disabled = true
+            window.setTimeout(function () {
+                // 将 this 指向修改为 btn
+                this.disabled = false
+            }.bind(this),2000)
+        })
+    </script>
+</body>
+</html>

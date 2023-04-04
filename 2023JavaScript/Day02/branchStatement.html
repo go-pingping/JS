@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 表达式：可以被求值的代码，JavaScript引擎会将其计算出一个结果
+        // 语句：可以执行的一段代码 （不一定有值）
+
+        // 除了 0，所有数字都为真
+        if (2) {
+            console.log('执行');
+        }
+        // 多分支 if else if
+        let score = prompt("请输入您的分数：");
+			if (score >= 90){
+			    alert("您的等级为A");
+			} else if (score >= 80){    
+			    alert("您的等级为B");
+			} else if (score >= 70){
+			    alert("您的等级为C");
+			} else if (score >= 60){
+			    alert("您的等级为D");
+			} else{
+			    alert("您的等级为E");
+			}
+        
+        // 三元 ：一般用来取值
+        let num3 = 3 > 5 ? 3 : 5
+        console.log(num3);
+        // 条件 ? 满足 : 不满足
+        console.log(3 > 5 ? 3 : 5);
+        // 判断两数最大值
+        let num1 = +prompt("请你输入第一个数")
+        let num2 = +prompt("请你输入第二个数")
+        num1 > num2 ? alert('最大值是' + num1) : alert('最大值是' + num2)
+        // 数字补 0 案例
+        let num = prompt('请您输入一个数字:')
+        num = num < 10 ? 0 + num : num
+        alert(num)
+
+        // switch
+        // switch()里的值要和case 后面的值全等
+        switch (1) {
+            case 1:
+                console.log('您选择的是1');
+                break
+            case 2:
+                console.log('您选择的是2');
+                break
+            case 3:
+                console.log('您选择的是3');
+                break
+            // 当没有对应值输出 default
+            default:
+                console.log('没有符合条件的');
+        }
+    </script>
+</body>
+</html>

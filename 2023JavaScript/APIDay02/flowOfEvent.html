@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+        .father {
+            display: none;
+            width: 400px;
+            height: 400px;
+            background: #299ee7;
+        }
+        .son {
+            width: 200px;
+            height: 200px;
+            background: #1443c1;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        // 事件流：事件完整执行过程中的流动路径
+        // 两个阶段：捕获（父到子）、冒泡（子到父）
+        // 捕获：从根元素开始去执行对应事件
+        // DOM.addEventListener(事件类型,处理函数,是否使用捕获机制)
+        // 是否使用捕获机制：true代表捕获、false代表冒泡（默认）
+        // 冒泡：当一个元素的事件被触发时，同样的事件将会在该元素的所有祖先元素中依次被触发
+        // 当一个元素触发事件后，会依次向上调用所有父级元素的同名事件（都是点击事件或者……）
+        // 阻止冒泡、捕获（流动传播）
+        // 事件对象.stopPropagation()
+        const fa = document.querySelector('.father')
+        const son = document.querySelector('.son')
+        document.addEventListener('click', function () {
+            alert('爷爷')
+        })
+        fn =  function () {
+            alert('爸爸')
+        }
+        fa.addEventListener('click', fn)
+        // 移除
+        fa.removeEventListener('click', fn)
+        // 阻止
+        son.addEventListener('click', function (e) {
+            alert('儿子')
+            e.stopPropagation()
+        })
+        // 解绑事件
+        // 匿名函数无法解绑
+
+        // mousevoer mouseout 有冒泡效果
+        // mouseenter mouseleava 没有冒泡效果 （推荐）
+
+        // 事件委托 
+        // 委托给父元素
+        // 找到真正触发的元素：事件对象.target.tagName
+
+        // 阻止默认行为
+        // e.preventDefault()
+
+
+        // 其他事件
+        // 1、页面加载事件
+        // load 等待
+        // 给 window 加 load 事件
+        // window.addEventListener('load', function(){})
+        // 当页面元素加载完，再执行
+        // DOMContentLoaded事件，无需等待样式、图像加载完
+        // 给 document添加
+        // 2、元素滚动事件
+        // scroll
+        window.addEventListener('scroll', function() {
+            console.log('scroll');
+        })
+        // scrollLeft scrollTop
+        // 被卷去的大小
+        // 获取 html元素的写法
+        // document.documentElement
+        console.log(document.documentElement);
+        // 页面卷去多少
+        window.addEventListener('scroll', function() {
+            const n = document.documentElement.scrollTop
+            // n的值可读写 (数字型)
+            // 返回顶部
+            // document.documentElement.scrollTop = 0
+            console.log(n);
+            if (n > 100) {
+                fa.style.display = 'block'
+            } else {
+                fa.style.display = 'none'
+            }
+        })
+
+        // 页面尺寸事件
+        // resize
+        window.addEventListener('resize', function(){
+            console.log('1');
+        })
+        // clientWidth clientHeight 检测宽度/高度 不包含边框
+
+        // 元素的尺寸和位置
+        // 尺寸：offsetWidth offsetHeight 包含边框，padding
+        // 位置：offsetLeft offsetTop 只读！！！
+        // 获取元素距离自己 定位 父级元素的左、上距离
+    </script>
+</body>
+</html>

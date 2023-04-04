@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="font-size: 30px;"></div>
+    <!-- 1、递归 -->
+    <script>
+        /* 
+        深拷贝
+            深浅拷贝只针对于引用类型
+            深拷贝，拷贝的是对象，不是地址
+            方法：
+                1、通过递归实现深拷贝
+                2、lodash库 / cloneDeep => _.cloneDeep()
+                3、JSON.stringify() => 转换为 JSON字符串  JSON.parse() => 转换为JSON对象
+        */
+
+        // 递归 ： 在函数内部调用自己
+        // 容易发生 “ 栈溢出 ”错误（Maximum call stack size exceeded），必须加退出条件 return
+        // let i = 1
+        // function fn() {
+        //     console.log(`这是第${i}次`)
+        //     if(i >= 6) {
+        //         return
+        //     }
+        //     i++
+        //     fn()
+        // }   
+        // fn()
+
+        function getTime() {
+            document.querySelector('div').innerHTML = new Date().toLocaleString()
+            setTimeout(getTime, 1000)
+        }
+        getTime()
+
+        /* 
+        浅拷贝
+            const obj = {
+                uname: 'ping',
+                uage: 20,
+                hobby: ['足球']
+            }
+            const o = {}
+            // 拷贝函数  -- 浅拷贝
+            function deepCopy(newObj, oldObj) {
+                for(let k in oldObj) {
+                    newObj[k] = oldObj[k]
+                }
+            }
+            deepCopy(o,obj)
+            console.log(o)
+            o.uage = 18
+            // 都被修改 -- 浅拷贝
+            o.hobby[0] = '篮球'
+            // 不会修改 obj的值
+            console.log(obj)
+        */
+
+        // 深拷贝
+        const obj = {
+            uname: 'ping',
+            uage: 20,
+            hobby: ['足球']
+            // 如果还有对象，if判断的时候一定要先判断数组，否则会出错 => 万物皆对象！！！
+        }
+        const o = {}
+        // 拷贝函数  -- 浅拷贝
+        function deepCopy(newObj, oldObj) {
+            debugger
+            for(let k in oldObj) {
+                if(oldObj[k] instanceof Array) {
+                    // oldObj[k] instanceof Array 判断 objOld[k] 是否属于数组 -- 原型链
+                    newObj[k] = [] // 空数组 => 接收 hobby值
+                    deepCopy(newObj[k], oldObj[k])
+                    // 递归
+                } else {
+                        newObj[k] = oldObj[k]
+                }
+            }
+        }
+        deepCopy(o,obj)
+        console.log(o)
+        o.uage = 18
+        // 只修改 o里面的 hobby -- 深拷贝
+        o.hobby[0] = '篮球'
+        // 不会修改 obj的值
+        console.log(obj)
+    </script>
+
+    <!-- 2、引用 lodash库 -->
+    <script src="./lodash.min.js"></script>
+    <script>
+        const obj1 = {
+            uname: 'ping',
+            uage: 20,
+            hobby: ['足球'],
+            family: {
+                baby: 'pingping'
+            }
+        }
+        // cloneDeep() 递归
+        const o1 = _.cloneDeep(obj1)
+        o1.family.baby = 'xiaxia'
+        console.log(o1)
+        console.log(obj1)
+    </script>
+
+    <!-- 3、JSON -->
+    <script>
+        const obj2 = {
+            uname: 'ping',
+            uage: 20,
+            hobby: ['足球'],
+            family: {
+                baby: 'pingping'
+            }
+        }
+        // 先转换为 JSON字符串，再转换为 JSON对象
+        const o2 = JSON.parse(JSON.stringify(obj2))
+        o2.family.baby = 'jinjin'
+        console.log(o2)
+        console.log(obj2)
+    </script>
+</body>
+</html>

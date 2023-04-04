@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <input type="text" name="" id="">
+    <script>
+        // 得到当前的日期时间
+        // 实例化 new
+        const date = new Date()
+        // 注意大小写
+        const div = document.querySelector('div')
+        
+        console.log(date);
+        // 得到指定时间
+        const date1 = new Date('2008-08-08 08:08')
+
+        // getFullYear()
+        console.log(date.getFullYear());
+        // getMonth 要 加一 （0 ~ 11）
+        console.log(date.getMonth() + 1);
+        console.log(date.getDate());
+        // getDay （0 ~ 6） 周日为 0
+        console.log(date.getDay());
+
+        // example
+        let h = date1.getHours()
+        // 补 0
+        h = h < 10 ? '0' + h :h
+        let m = date1.getMinutes()
+        m = m < 10 ? '0' + m :m
+        console.log(`${date1.getFullYear()}-${date1.getMonth() + 1}-${date1.getDate()} ${h}:${m}`);
+        console.log(date1.toLocaleString()); // 自动补 0
+        console.log(date1.toLocaleDateString());
+        console.log(date1.toLocaleTimeString());
+
+        div.innerHTML = date.toLocaleString()
+        setInterval(function() {
+            document.querySelector('input').value = date.toLocaleString()
+        }, 1000);
+
+        // 时间戳
+        // 毫秒数
+        const d = new Date()
+        console.log(d.getTime());
+        // 2、转换为数字型
+        console.log(+new Date());
+        console.log('-------------------');
+        console.log(+new Date('2024-3-1 18:00:00'));
+        // 3、
+        console.log(Date.now()); // 只能得到当前时间戳
+    </script>
+</body>
+</html>

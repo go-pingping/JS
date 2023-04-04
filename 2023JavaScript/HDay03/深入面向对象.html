@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 编程思想
+        // 前端面向过程更多
+        /* 
+        1、面向过程
+            分析出解决问题的步骤
+            性能高，与硬件联系更紧密
+        2、面向对象 (oop - 面向对象编程)
+            把事务分成一个个的对象 —— 按功能划分 
+            封装、继承、多态
+        */
+
+        // 通过构造函数来实现封装
+        function Star(uname, uage) {
+            this.uname = uname
+            this.uage = uage
+            // this.sing = function() {
+            //     console.log("唱歌")
+            // }
+            // 存在浪费内存的问题
+            // 几个实例对象调用，就会创建几个方法，不会指向同一个
+        }
+        Star.prototype.sing = function() {
+            console.log("唱歌")
+        }
+        const ldh = new Star('刘德华', 55)
+        console.log(ldh.sing())
+        const zxy = new Star('张学友', 56)
+        // this 指向实例对象
+
+        // 原型(prototype) - 解决构造函数浪费内存问题
+        /* 
+        1、构造函数通过原型分配的函数是所有对象所共享的
+        2、js规定，每个构造函数都有一个 prototype属性，指向另一个对象，称为原型对象
+        3、这个对象可以挂载、对象实例化不会多次创建原型上的函数，节约内存
+        4、把不变的方法，定义在 prototype对象上，多有对象的实例共享方法
+        5、构造函数和原型对象中的 this都指向实例化对象
+        */
+        console.log(ldh.sing === zxy.sing)  // true => 指向同一个方法
+
+        // constructor 构造函数
+        // 该属性指向该原型对象的构造函数
+        // 从新指回创造这个原型对象的构造函数
+
+    </script>
+</body>
+</html>

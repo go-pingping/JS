@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- location.hash 获取 #后面的内容 -->
+    <!-- 不跳转，只改变组件 -->
+    <a href="#/my">我的</a>
+    <a href="#/your">你的</a>
+    <a href="#/his">他的</a>
+    <script>
+        // BOM 浏览器对象模型
+        // window是全局对象
+        /* 
+            document.querySelector()
+            省略 window
+            window.document.querySelector() 
+            声明的函数
+            window.fn()
+            省略！
+        */
+
+        // 定时器 - 延时函数
+        // setTimeout(回调函数(){}, 等待毫秒数 timeout);
+        // 仅执行一次
+        setTimeout(function() {
+            console.log('五秒钟了，我消失了！');
+        },5000)
+
+        // JS执行机制
+        /* 
+            单线程 —— 同一时间只能做一件事！ 
+            允许创建多线程 —— 出现同步和异步
+            区别：各个流程执行顺序不同
+            同步任务都在主线程上执行，形成一个执行栈
+            异步任务通过回调函数实现，异步任务相关添加到任务队列中（消息队列）
+            1、普通事件，click、resize ……
+            2、资源时间，load、error ……
+            3、定时器，setInterval、setTimeout ……
+
+            1、先执行执行栈中的同步任务
+            2、将异步任务放入任务队列中
+            3、一旦执行栈中的所有同步任务执行完毕，系统会按次序读取任务队列。
+
+            事件循环：由于主线程不断的重复获得任务、执行任务、再获取任务、再执行、所以 这种机制被称为事件循环（event loop）
+        */
+
+        // location 对象
+        console.log(location);
+        console.log(location.href);
+        /* 
+            href 经常用 href 利用 js的方法跳转页面
+            search 获取 ？后面的内容
+            hash 获取 # 后面的部分
+            reload() 方法 刷新！可以添加参数 true ，实现强制刷新
+        */
+        // hash
+        console.log(location.hash);
+
+        // navigator 对象
+        /* 
+            记录浏览器自身相关信息
+            userAgent检测浏览器的版本及平台
+            可以检测浏览器是什么版本，pc端，安卓、苹果，实现不同版本的跳转
+        */
+
+        // history 对象
+        /* 
+            管理历史记录
+            back() 后退
+            forward() 前进
+            go(参数) 1全进一个页面，-1后退一个页面
+        */
+    </script>
+</body>
+</html>

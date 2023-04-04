@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 自增
+        let i = 1
+        // 区别
+        i++
+        // 后置 ++ ：先运算再 ++
+        console.log(i++ + 1); // i=2
+        ++i
+        // 前置 ++ ：先自加
+        console.log(++i + 1); // i=3
+        // 
+        console.log(i++ + ++i + i); // i=7
+
+        // 比较
+        // == 值判断值 —— 有隐式转换
+        console.log(2 == '2');
+        // === 左右两边是否数据类型和值都相等
+        console.log(2 === '2');
+        // 字符串的比较 —— ascll
+        console.log('aa' < 'ab');
+        // 涉及到 NaN的都是 false
+
+        // 逻辑运算符
+        // 与 &&     或 ||     非 !
+
+        // 优先级
+        // 小括号、一元运算符、算数、关系、相等、逻辑（先 && 再 ||）、赋值、逗号
+    </script>
+</body>
+</html>

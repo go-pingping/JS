@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 本地存储
+        /* 
+            用户存储在浏览器中
+            设置、读取方便，甚至页面刷新不丢失数据
+            容量较大，sessionStorage和localStorage约 5MB左右
+            本地存储只能存储字符串数据类型
+        */
+        // localStorage
+        /* 
+            永久存储在本地，要手动删除
+            可以多窗口共享
+            以键值对形式存储
+            增删改查
+            存
+            localStorage.setItem('key','value')
+            取
+            localStorage.getItem('key')
+            删
+            localStorage.removeItem('key')
+        */
+        localStorage.setItem('uname','ping')
+        console.log(localStorage.getItem('uname'))
+        localStorage.removeItem('uname')
+
+        // sessionStorage （不常用）
+        /* 
+            生命周期为关闭浏览器窗口
+            在同一个窗口下数据可以共享
+            以键值对的形式存储
+            语法与上面基本相同
+        */
+
+        // 存储复杂数据类型
+        // 存储复杂数据类型，无法直接使用
+       const obj = {
+        uname: 'ping',
+        age: 18,
+        gender: '女'
+       }
+        // localStorage.setItem('obj',obj)
+       console.log(localStorage.getItem('obj'))
+        // 解决办法：
+        // 1、将复杂数据类型转换成 JSON字符串，在存储到本地
+        // JSON.stringify(复杂数据类型) 
+        localStorage.setItem('obj',JSON.stringify(obj)) // 字符串
+        // {"uname":"ping","age":18,"gender":"女"}
+        // JSON 对象，属性和值都有引号，而且是双引号
+        // 2、将 JSON字符串转换为对象
+        const str = localStorage.getItem('obj')
+        console.log(JSON.parse(str))
+        // JSON.parse()
+
+        // 字符串拼接新思路：开发常用
+        // 利用 map() 和 join() 数组方法实现字符串拼接
+        /* 
+            map:可以遍历数组处理数据，并 返回新数组
+            映射 指两个元素的集之间元素相互对应的关于
+            map 重点在于返回值
+
+            join：把数组中的所有元素转换成一个字符串
+            数组元素是通过参数里面指定的分隔符进行分隔的，空字符串('')，则所有元素之间都没有任何字符。
+
+        */
+       const arr = ['red', 'blue', 'pink']
+       const newArry = arr.map(function (ele, index) {
+        console.log(ele) // 数组元素
+        console.log(index) // 索引号
+        // 返回值
+        return ele + '颜色'
+       })
+       console.log(newArry)  // 新数组
+       console.log(newArry.join())
+       console.log(newArry.join('')) // 无分隔符
+    </script>
+</body>
+</html>

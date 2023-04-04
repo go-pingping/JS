@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>年会抽奖</title>
+  <style>
+    .wrapper {
+      width: 840px;
+      height: 420px;
+      background:  rgb(198, 234, 40);
+      padding: 100px 250px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <strong>传智教育年会抽奖</strong>
+    <h1>一等奖：<span id="one">???</span></h1>
+    <h3>二等奖：<span id="two">???</span></h3>
+    <h5>三等奖：<span id="three">???</span></h5>
+  </div>
+  <script>
+    const personAll = ['周', '李', '王', '夏']
+
+    // 一等奖
+    // 随机数 数组的下标
+    const random = Math.floor(Math.random() * personAll.length)
+    console.log(personAll[random])
+    // 获取 one
+    const one = document.querySelector('#one')
+    // 把名字给 one
+    one.innerHTML = personAll[random]
+    // 删除名字
+    personAll.splice(random, 1)
+    console.log(personAll);
+
+    // 二等奖
+    // 随机数 数组的下标
+    const random2 = Math.floor(Math.random() * personAll.length)
+    console.log(personAll[random2])
+    // 获取 two
+    const two = document.querySelector('#two')
+    // 把名字给 two
+    two.innerHTML = personAll[random2]
+    // 删除名字
+    personAll.splice(random2, 1)
+    console.log(personAll);
+
+    // 三等奖
+    // 随机数 数组的下标
+    const random3 = Math.floor(Math.random() * personAll.length)
+    console.log(personAll[random3])
+    // 获取 three
+    const three = document.querySelector('#three')
+    // 把名字给 three
+    three.innerHTML = personAll[random3]
+    // 删除名字
+    personAll.splice(random3, 1)
+    console.log(personAll);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 问题：继承对象是，当出现多个继承者，任意一个的修改，所有属性或方法都会跟着被修改
+        // 解决：创建构造函数 => new 出来的对象，结构一样，但对象不一样
+        // 使用 new Person()来赋值给原型对象
+        // const Person = {
+        //     eyes: 2,
+        //     head: 1
+        // }
+        function Person() {
+            this.eyes = 2
+            this.head = 1
+        }
+        // Woman
+        function Woman() {}
+        // 通过原型对象来继承 Person
+        Woman.prototype = new Person()
+        // 继承后会覆盖 constructor，所以要在下面指回
+        Woman.prototype.constructor = Woman
+        Woman.prototype.baby = function() {
+            console.log('baby')
+        }
+        const woman = new Woman()
+        console.log(woman)
+        // Man
+        function Man() {}
+        // 通过原型对象来继承 Person
+        Man.prototype = new Person()
+        // 继承后会覆盖 constructor，所以要在下面指回
+        Man.prototype.constructor = Man
+        const man = new Man()
+        console.log(man)
+
+        // 原型链
+        /* 基于原型对象的继承使得不同构造函数的原型对象关联在一起，
+        并且这种关联的关系是一种链状结构，
+        我们将原型对象的链状结构关系成为原型链。 */
+
+        /* 
+        查找规则
+            1、访问对象的属性或方法时，首先查找这个对象自身有没有这个属性或方法
+            2、如果没有就查找他的原型，__proto__指向的 prototype原型
+            3、如果还没有就查找原型对象的原型
+            4、直到 Object为 null
+            5、可以使用 instanceof - 运算符 - 检测构造函数的 prototype属性是否出现在某个实例对象的原型链上
+        */
+    </script>
+</body>
+</html>
